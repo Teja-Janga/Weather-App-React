@@ -1,16 +1,137 @@
-# React + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🌤️ Live Demo
 
-Currently, two official plugins are available:
+👉 **[View Live Demo](https://weather-app-react-psi-weld.vercel.app/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## React Compiler
+Weather App is a responsive web application built with React and Vite that provides real-time weather data, hourly forecasts, and a 5-day weather outlook. The app features an interactive hourly temperature chart, geolocation support, theme toggle, and favorite location bookmarking.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+✨ **Core Features:**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* 🔍 Search weather by city name with autocomplete suggestions
+* 📍 Geolocation support - Get weather for your current location
+* 🌡️ Real-time current weather data (temperature, humidity, pressure, wind speed, etc.)
+* ⭐ Add/remove cities from favorites with persistent storage
+* 📊 Interactive hourly temperature chart using Recharts
+* 📅 5-day weather forecast
+* 🌙 Dark/Light theme toggle
+* 📱 Fully responsive design (mobile, tablet, desktop)
+* ⚡ Fast performance with Vite and React
+* 🎨 Clean and intuitive UI with smooth animations
+* 💾 Persistent favorites using browser localStorage
+* ⏳ Loading states and error handling
+* 🌐 Real-time weather data from OpenWeather API
+
+## Tech Stack
+
+* **Frontend Framework:** React 18
+* **Build Tool:** Vite
+* **Styling:** CSS (Custom with Flexbox/Grid)
+* **Charts:** Recharts
+* **API:** OpenWeather API
+* **Storage:** Browser LocalStorage
+* **Deployment:** Vercel
+
+## Project Structure
+
+```
+Weather-App-React/
+├── src/
+│   ├── components/
+│   │   ├── SearchBar.jsx
+│   │   ├── CurrentWeather.jsx
+│   │   ├── Forecast.jsx
+│   │   └── TemperatureChart.jsx
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── public/
+│   └── vite.svg
+├── index.html
+├── package.json
+├── vite.config.js
+└── .gitignore
+```
+
+## Usage
+
+1. **Search Cities:** Type a city name in the search bar to see autocomplete suggestions
+2. **View Weather:** Click on a suggested city to fetch its weather data
+3. **Use Location:** Click the location icon to get weather for your current location
+4. **Add Favorites:** Click the star icon to save cities for quick access
+5. **View Forecast:** Check the 5-day forecast and hourly temperature trends
+6. **Toggle Theme:** Switch between dark and light modes using the theme button
+7. **Browse Hourly:** Click on a forecast day to see hourly breakdowns with an interactive chart
+
+## Features in Detail
+
+### Current Weather
+* Real-time temperature, "feels like", min/max values
+* Weather condition description with emoji indicator
+* Humidity, pressure, visibility, and wind speed
+* Sunrise and sunset times
+* Favorite toggle button for quick bookmarking
+
+### 5-Day Forecast
+* Daily weather overview with date, temperature, and conditions
+* High-quality weather icons
+* Click any day to see detailed hourly forecast
+* Selected day highlighting
+
+### Hourly Forecast
+* Interactive line chart showing temperature trends
+* Detailed hourly data in a horizontal scrollable grid
+* Precise time stamps and weather conditions
+* Dynamic theme-aware chart colors
+
+### Themes
+* Dark mode (default) - Easy on the eyes with blue gradient background
+* Light mode - Clean and bright interface
+* Persistent theme preference using localStorage
+
+### Geolocation
+* One-click weather access using browser geolocation
+* Automatic location detection on first visit
+* Error handling for denied permissions
+
+## Deployment
+
+The app is deployed on **Vercel**.
+
+1. Push code to GitHub main branch
+2. Vercel automatically detects changes
+3. App rebuilds and deploys within seconds
+4. Environment variables are securely managed in Vercel dashboard
+
+## Future Enhancements
+
+* 🎯 Weather alerts and notifications
+* 📊 Historical weather data and trends
+* 🗺️ Interactive weather map
+* 🌍 Support for multiple languages
+* 📈 Air quality index (AQI) information
+* ⚙️ Customizable temperature units (°C/°F)
+* 🔔 Push notifications for weather changes
+* 📤 Share weather with others
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Author
+
+**Teja Janga**
+
+* GitHub: [@Teja-Janga](https://github.com/Teja-Janga)
+* Live Demo: [weather-app-react-psi-weld.vercel.app](https://weather-app-react-psi-weld.vercel.app/)
+
+## Acknowledgments
+
+* [OpenWeather API](https://openweathermap.org/) for real-time weather data
+* Font Awesome for weather icons
+
+**Made by Teja Janga**
