@@ -1,0 +1,342 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #1b3565, #2b56a1);
+    min-height: 100vh;
+    color: #fff;
+}
+
+.app {
+    width: 100%;
+    max-width: 480px;
+    background: hsl(220, 35%, 15%); /* dark card */
+    padding: 20px 10px;
+    border-radius: 18px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    transition: 0.7s ease;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.main-header {
+    margin-bottom: 15px;
+    text-align: center;
+}
+/* ===================================== SearchBar =================================== */
+.search-bar { display: flex; gap: 8px; margin-bottom: 16px; }
+.search-bar input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.8);
+    background: rgba(15, 23, 42, 0.8);
+    color: #e5e7eb;
+    outline: none;
+}
+.fas {
+    font-size: 20px;
+}
+
+.search-bar input::placeholder { color: #9ca3af; }
+.search-bar input:focus { border-color: #38bdf8; box-shadow: 0 0 0 1px #38bdf880; }
+.search-bar button {
+    padding: 10px 17px;
+    border-radius: 40px;
+    border: none;
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+.search-bar button:hover { background: #0ea5e9; }
+.search-bar button:active { transform: scale(0.97); }
+.current-weather { text-align: center; margin-bottom: 18px; }
+.current-weather h2 { font-size: 1.4rem; margin-bottom: 4px; }
+.current-weather .temp { font-size: 2.4rem; font-weight: 600; margin-bottom: 4px; }
+.current-weather .desc { font-size: 0.95rem; }
+
+.search-bar button:disabled { opacity: 0.6; cursor: not-allowed; }
+.search-bar input:disabled { opacity: 0.8; }
+.loader {
+    margin: 16px auto;
+    border: 3px solid rgba(148, 163, 184, 0.4);
+    border-top-color: #38bdf8;
+    border-radius: 999px;
+    width: 28px;
+    height: 28px;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.fav-btn {
+    border: none;
+    background: transparent;
+    color: #fbbd23;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.fav-btn--active { text-shadow: 0 0 6px #fbbd23cc; }
+/* =================================== Current Extra ================================ */
+
+.current-extra {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.85rem;
+    color: #e5e7eb;
+}
+
+.current-grid {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.current-grid div { display: flex; flex-direction: column; gap: 2px; }
+.current-grid strong { color: #80aaff; font-weight: 500; }
+.current-grid span {color: #c7cad1;}
+.current-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+/* =================================== Forecast ===================================== */
+.forecast { margin-top: 10px; }
+.forecast h2 { font-size: 1.1rem; margin-bottom: 8px; }
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 8px;
+}
+
+.forecast-card {
+    background: #1e3caae6;
+    border-radius: 12px;
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.forecast-card p { font-weight: 600; margin-bottom: 4px; }
+.forecast-card img { width: 40px; height: 40px; }
+.error {
+    margin-top: 8px;
+    color: #fecaca;
+    font-size: 0.9rem;
+    text-align: center;
+}
+/* ==================================================================================== */
+.last-updated {
+    margin-top: 5px;
+    font-size: 0.82rem;
+    text-align: center;
+    color: hsl(220, 15%, 70%);
+}
+
+.footer {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    color: #9ca3af;
+}
+
+.footer a { color: #5fc1eb; text-decoration: none; font-weight: 700;}
+.footer a:hover { text-decoration: underline; }
+
+/* ================================= Theme Toggle ==================================== */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.app.dark { background: hsl(220, 35%, 15%); }
+.app.light { background: #ccc; color: #0f172a; }
+.app.light .current-weather div,
+    .app.light .current-grid span,
+    .app.light .last-updated,
+    .app.light .footer { color: #0f1729; }
+.app.light hr {border-color: #0f1729;}
+.app.light .error {color: hsl(10, 100%, 30%);}
+.app.light .fav-btn {color: #0f1729;}
+.app.light .fav-btn--active { text-shadow: 0 2px 3px #0f1729cc; }
+.app.light .current-grid strong, .app.light .footer a { color: #1a1fff; }
+.app.light .forecast-grid {color: #ddd;}
+.app.light .forecast-card { background: #1f3047;}
+.app.light .forecast-card--today { border: 2px solid #fbbd23; box-shadow: 0 0 10px #0f2600; }
+.theme-toggle { display: flex; justify-content: flex-end; }
+.theme-toggle button {
+    border: none;
+    border-radius: 30px;
+    font-size: 1.15rem;
+    padding: 2px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #222;
+    box-shadow: 0 0 1px #fff;
+}
+
+.app.light .theme-toggle button { background: #0f172a; transition: 0.7s ease; }
+.app.light .hourly-card { background: #1f3047; color: #fff;}
+/* ================================ Hourly Strip ================================== */
+
+.hourly-section {
+    margin-top: 20px;
+    border-top: 1px solid #ffffff33;
+    padding-top: 10px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative;
+    overflow: hidden;
+}
+.hourly-section h3 { font-size: 1rem; margin-bottom: 10px; text-align: center; }
+.hourly-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    overflow-x: auto;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+.hourly-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1e3caae6;
+    border-radius: 5px;
+}
+
+.hourly-card p { font-size: 11px; font-weight: 600; }
+.forecast-card.selected {
+    border: 2px solid #fbbf24; /* Highlight color matching your star */
+    background: rgba(255, 255, 255, 0.2);
+}
+.suggestions {
+    position: absolute;
+    top: 100%; /* Puts it right below the input */
+    width: 100%;
+    left: 0;
+    right: 0; /* Spans full width if desired, or set specific width */
+    background: rgba(15, 23, 42, 0.95); /* Dark background matching your card */
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 8px;
+    margin-top: 4px;
+    z-index: 999 !important; /* Ensure it floats above other content */
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.suggestion-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    color: #e2e8f0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    font-size: 0.9rem;
+    text-align: left;
+}
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover { background: #38bdf833; color: #38bdf8; }
+
+/* ========================= Responsive Design ========================= */
+
+/* Tablets and smaller laptops (max-width: 768px) */
+@media (max-width: 768px) {
+    .app { padding: 20px; }
+    .main-header { font-size: 1.5rem; }
+    .search-bar input, .search-bar button {padding: 10px;}
+    .current-weather .temp { font-size: 2rem; }
+    .current-grid { grid-template-columns: 1fr 1fr; }
+    .forecast-grid { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 6px; }
+    .forecast-card { padding: 5px; font-size: 0.7rem; }
+    .forecast-card img { width: 40px; height: 40px; }
+    .hourly-card { min-width: 80px; padding: 6px; }
+    .hourly-card img { width: 40px; height: 40px; }
+    /* Chart container */
+    .chart-container { height: 180px !important; min-height: 180px !important; }
+}
+
+/* Mobile phones (max-width: 480px) */
+@media (max-width: 480px) {
+    .app {
+        padding: 15px 10px;
+        width: 95%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    .main-header { font-size: 1.3rem; margin-bottom: 12px;}
+    .theme-toggle button { font-size: 1rem; padding: 10px;}
+    .search-bar input { font-size: 0.9rem; }
+    .search-bar button { font-size: 0.85rem; padding: 10px; }
+    .current-weather h2 { font-size: 1.1rem; }
+    .current-weather .temp { font-size: 1.8rem; }
+    .current-weather .desc { font-size: 0.85rem; }
+    .current-extra { font-size: 0.8rem; }
+    .current-grid { font-size: 0.75rem; gap: 6px; }
+    .fav-btn { font-size: 1.5rem; }
+    .forecast h2, .hourly-section h3 { font-size: 0.95rem; }
+    .forecast-grid { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); }
+    .forecast-card { padding: 5px 3px; font-size: 0.7rem; }
+    .forecast-card img { width: 32px; height: 32px; }
+    .hourly-section {width: 100%;}
+    .hourly-card { min-width: 80px; padding: 5px; min-height: 100px; }
+    .hourly-card p { font-size: 12px; }
+    .hourly-card img { width: 35px; height: 35px; }
+    /* Make chart slightly shorter on small phones */
+    .chart-container {
+        height: 160px !important;
+        min-height: 160px !important;
+        width: 100% !important;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .last-updated, .footer { font-size: 0.75rem; }
+    /* Suggestions dropdown */
+    .suggestions { font-size: 0.85rem; }
+    .suggestion-item { padding: 8px 10px; }  
+}
+
+/* Very small screens (max-width: 360px) */
+@media (max-width: 360px) {
+    .search-bar {flex-direction: column;}
+    .app { padding: 12px 15px; }
+    .main-header { font-size: 1.1rem; }
+    .current-weather .temp { font-size: 1.6rem; }
+    .forecast-card img { width: 28px; height: 28px; }
+    .hourly-card { min-width: 50px; }
+}
