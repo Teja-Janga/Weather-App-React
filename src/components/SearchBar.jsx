@@ -2,7 +2,10 @@
 function SearchBar({ city, onCityChange, onSearch, onUseLocation, disabled,
     suggestions, showSuggestions, onSelectSuggestion }) {
     const handleKeyDown = (e) => {
-        if (e.key === "Enter") onSearch();
+        if (e.key === "Enter") {
+            onSearch();
+            document.getElementsByClassName("suggestions").style.display = "none";
+        }
     }
 
     return (

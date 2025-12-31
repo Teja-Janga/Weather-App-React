@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import SearchBar from "./components/SearchBar";
 import CurrentWeather from "./components/CurrentWeather";
 import Forecast from "./components/Forecast";
+import WeatherMap from "./components/WeatherMap";
 
 const API_KEY = import.meta.env.VITE_OPENWEATHER_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -25,11 +26,6 @@ function App() {
     const debounceTimer = useRef(null);
 
     useEffect(() => {
-        const savedCity = localStorage.getItem("weather-last-city");
-        if (savedCity) {
-            setCity(savedCity);
-        }
-
         const savedFavourites = localStorage.getItem('weather-favourites');
         if (savedFavourites) {
             try {
@@ -38,11 +34,6 @@ function App() {
             catch {
                 setFavourites([]);
             }
-        }
-
-        const savedTheme = localStorage.getItem("weather-theme");
-        if (savedTheme === "light" || savedTheme === "dark") {
-            setTheme(savedTheme);
         }
     }, []);
 
@@ -76,7 +67,7 @@ function App() {
         setCity(name);
         setSuggestions([]);
         setShowSuggestions(false);
-        // handleSearch();
+        handleSearch();
     };
 
     const updateFavourites = (next) => {
@@ -85,7 +76,7 @@ function App() {
     };
 
     const handleToggleFavourite = () => {
-        if (weather?.name) return;
+        if (!weather || !weather.name) return;
         const cityName = weather.name;
 
         if (favourites.includes(cityName)) {
@@ -99,7 +90,6 @@ function App() {
     const toggleTheme = () => {
         const next = theme === "dark" ? "light" : "dark";
         setTheme(next);
-        localStorage.setItem("weather-theme", next);
     };
 //================================== Live Location ====================================//
     const handleUseLocation = () => {
@@ -107,11 +97,9 @@ function App() {
             setError("Geolocation is not supported in this browser.");
             return;
         }
-
         navigator.geolocation.getCurrentPosition(
             async (position) => {
                 const { latitude, longitude } = position.coords;
-
                 try {
                     setLoading(true);
                     setError("");
@@ -128,7 +116,6 @@ function App() {
                     setLastUpdated(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
                     if (data.name) {
                         setCity(data.name);
-                        localStorage.setItem("weather-last-city", data.name);
                     }
 
                     const forecastUrl = `${FORECAST_URL}?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
@@ -171,15 +158,14 @@ function App() {
             const url = `${BASE_URL}?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
             const res = await fetch(url);
             if (!res.ok) {
-                throw new Error('City not found');
+                throw new Error('🚫 City not found');
             }
 
             const data = await res.json();
             setWeather(data);
             setLastUpdated(new Date().toLocaleTimeString([], {hour: "2-digit", minute: "2-digit" }));
 
-            localStorage.setItem("weather-last-city", city);
-            // 2. 5-day / 3-hour forecast
+//2.  5-day / 3-hour forecast
             const forecastUrl = `${FORECAST_URL}?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
             const forecastRes = await fetch(forecastUrl);
             const forecastJson = await forecastRes.json();
@@ -198,7 +184,6 @@ function App() {
             setLoading(false);
         }
     }
-
     return (
         <div className={`app ${theme}`}>
             <div className="theme-toggle">
@@ -224,6 +209,14 @@ function App() {
                 isFavourite={isFavourite}
                 onToggleFavourite={handleToggleFavourite}
             /><hr/>
+            {weather && (
+                <WeatherMap 
+                    lat={weather.coord.lat}
+                    lon={weather.coord.lon}
+                    city={weather.name}
+                    Apikey={API_KEY}
+                />
+            )}
             <Forecast items={forecast} fullList={forecastList} theme={theme} />
             {lastUpdated && <p className="last-updated">Last updated at {lastUpdated}</p>}
             <p className="footer">

@@ -1,7 +1,6 @@
 
 function CurrentWeather({ data, isFavourite, onToggleFavourite }) {
     if (!data) return null;
-
     const { name, main, weather, wind, sys, visibility } = data;
     const temperature = Math.round(main.temp);
     const feelsLike = Math.round(main.feels_like);
@@ -20,10 +19,12 @@ function CurrentWeather({ data, isFavourite, onToggleFavourite }) {
             <div className="current-header">
                 <h2>{name}</h2>
                 <button
-                className={`fav-btn ${isFavourite ? "fav-btn--active" : ""}`}
-                onClick={onToggleFavourite}
-                aria-label={isFavourite ? "Remove from favourites" : "Add to favourites"} 
-                >{isFavourite ? "★" : "☆"}</button>
+                    className={`fav-btn ${isFavourite ? "fav-btn--active" : ""}`}
+                    onClick={onToggleFavourite}
+                    aria-label={isFavourite ? "Remove from favourites" : "Add to favourites"}
+                >
+                    {isFavourite ? "★" : "☆"}
+                </button>
             </div>
             <p className="temp">{temperature}°C</p>
             <p className="desc">{condition.main} - {condition.description}</p>

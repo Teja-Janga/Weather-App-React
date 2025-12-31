@@ -14,18 +14,19 @@
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #1b3565, #2b56a1);
+    background: linear-gradient(135deg, hsl(210, 50%, 30%), hsl(210, 50%, 50%));
     min-height: 100vh;
     color: #fff;
 }
 
 .app {
     width: 100%;
-    max-width: 480px;
-    background: hsl(220, 35%, 15%); /* dark card */
+    max-width: 450px;
+    min-width: 320px;
+    background: hsl(220, 35%, 15%);
     padding: 20px 10px;
     border-radius: 18px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 4px 4px 6px #000;
     transition: 0.7s ease;
     margin: 0 auto;
     box-sizing: border-box;
@@ -52,7 +53,7 @@ body {
 }
 
 .search-bar input::placeholder { color: #9ca3af; }
-.search-bar input:focus { border-color: #38bdf8; box-shadow: 0 0 0 1px #38bdf880; }
+/* .search-bar input:focus { border-color: #38bdf8; box-shadow: 0 0 0 1px #38bdf880; } */
 .search-bar button {
     padding: 10px 17px;
     border-radius: 40px;
@@ -142,9 +143,10 @@ body {
 .forecast-card p { font-weight: 600; margin-bottom: 4px; }
 .forecast-card img { width: 40px; height: 40px; }
 .error {
-    margin-top: 8px;
-    color: #fecaca;
-    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #e61919;
+    font-size: 1.2rem;
+    font-weight: 600;
     text-align: center;
 }
 /* ==================================================================================== */
@@ -175,13 +177,15 @@ body {
     justify-content: center;
 }
 .app.dark { background: hsl(220, 35%, 15%); }
-.app.light { background: #ccc; color: #0f172a; }
+.app.light { background: #aaa; color: #0f172a; }
+.app.light .search-bar input {background: #aaa; color: #222; border: 2px solid #777;}
+.app.light .search-bar input::placeholder {color: #222;}
+.app.light .search-bar button {background: #0f1729; color: #fff;}
 .app.light .current-weather div,
     .app.light .current-grid span,
     .app.light .last-updated,
     .app.light .footer { color: #0f1729; }
 .app.light hr {border-color: #0f1729;}
-.app.light .error {color: hsl(10, 100%, 30%);}
 .app.light .fav-btn {color: #0f1729;}
 .app.light .fav-btn--active { text-shadow: 0 2px 3px #0f1729cc; }
 .app.light .current-grid strong, .app.light .footer a { color: #1a1fff; }
@@ -197,7 +201,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     background: #222;
-    box-shadow: 0 0 1px #fff;
+    box-shadow: 0 0 2px #fff;
 }
 
 .app.light .theme-toggle button { background: #0f172a; transition: 0.7s ease; }
@@ -217,6 +221,8 @@ body {
 .chart-container {
     width: 100% !important;
     max-width: 100% !important;
+    height: 250px !important;
+    margin-top: 15px;
     position: relative;
     overflow: hidden;
 }
@@ -239,12 +245,13 @@ body {
     align-items: center;
     background: #1e3caae6;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .hourly-card p { font-size: 11px; font-weight: 600; }
 .forecast-card.selected {
-    border: 2px solid #fbbf24; /* Highlight color matching your star */
-    background: rgba(255, 255, 255, 0.2);
+    border: 3px solid #f2a60d; /* Highlight color matching your star */
+    background: hsl(210, 40%, 25%);
 }
 .suggestions {
     position: absolute;
@@ -319,7 +326,7 @@ body {
     .hourly-card img { width: 35px; height: 35px; }
     /* Make chart slightly shorter on small phones */
     .chart-container {
-        height: 160px !important;
+        height: 180px !important;
         min-height: 160px !important;
         width: 100% !important;
         max-width: 100%;
@@ -337,6 +344,5 @@ body {
     .app { padding: 12px 15px; }
     .main-header { font-size: 1.1rem; }
     .current-weather .temp { font-size: 1.6rem; }
-    .forecast-card img { width: 28px; height: 28px; }
-    .hourly-card { min-width: 50px; }
+    .hourly-card p {font-size: 10px;}
 }
