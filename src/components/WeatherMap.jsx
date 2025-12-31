@@ -25,9 +25,8 @@ function WeatherMap({ lat, lon, city, Apikey }) {
                 <ChangeView center={position} />
                 <TileLayer
                     attribution='&copy;
-                    <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy;
-                    <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-                    url='https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png'
+                    <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
 
                 <TileLayer
