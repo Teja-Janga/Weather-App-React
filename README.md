@@ -17,7 +17,7 @@ Weather App is a responsive web application built with React and Vite that provi
 * 🌡️ Real-time current weather data (temperature, humidity, pressure, wind speed, etc.)
 * ⭐ Add/remove cities from favorites with persistent storage
 * 📊 Interactive hourly temperature chart using Recharts
-* 📅 5-day weather forecast
+* 📅 5-day and hourly weather forecast
 * 🌙 Dark/Light theme toggle
 * 📱 Fully responsive design (mobile, tablet, desktop)
 * ⚡ Fast performance with Vite and React
@@ -25,6 +25,7 @@ Weather App is a responsive web application built with React and Vite that provi
 * 💾 Persistent favorites using browser localStorage
 * ⏳ Loading states and error handling
 * 🌐 Real-time weather data from OpenWeather API
+* 🗺️ Interactive Weather Map - View real-time precipitation and temperature layers using Leaflet
 
 ## Tech Stack
 
@@ -32,6 +33,7 @@ Weather App is a responsive web application built with React and Vite that provi
 * **Build Tool:** Vite
 * **Styling:** CSS (Custom with Flexbox/Grid)
 * **Charts:** Recharts
+* **Maps:** Leaflet & React-Leaflet
 * **API:** OpenWeather API
 * **Storage:** Browser LocalStorage
 * **Deployment:** Vercel
@@ -45,7 +47,8 @@ Weather-App-React/
 │   │   ├── SearchBar.jsx
 │   │   ├── CurrentWeather.jsx
 │   │   ├── Forecast.jsx
-│   │   └── TemperatureChart.jsx
+│   │   ├── TemperatureChart.jsx
+│   │   └── WeatherMap.jsx
 │   ├── App.jsx
 │   ├── index.css
 │   └── main.jsx
@@ -88,6 +91,11 @@ Weather-App-React/
 * Precise time stamps and weather conditions
 * Dynamic theme-aware chart colors
 
+### Interactive Weather Map
+* Dynamic terrain map with smooth zooming
+* Real-time weather overlays (Precipitation and Temperature)
+* Smooth view transitions when searching for new cities
+
 ### Themes
 * Dark mode (default) - Easy on the eyes with blue gradient background
 * Light mode - Clean and bright interface
@@ -111,7 +119,6 @@ The app is deployed on **Vercel**.
 
 * 🎯 Weather alerts and notifications
 * 📊 Historical weather data and trends
-* 🗺️ Interactive weather map
 * 🌍 Support for multiple languages
 * 📈 Air quality index (AQI) information
 * ⚙️ Customizable temperature units (°C/°F)
